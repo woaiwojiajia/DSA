@@ -9,7 +9,7 @@ typedef int ElemType;       //存储单元类型
 typedef struct {
     ElemType *elem;         //存储空间基址
     int length;             //当前长度
-    int listsize;           //当前分配的存储容量（以sizeof(EleType)为单位）
+    int listsize;           //当前分配的存储容量（以sizeof(ElemType)为单位）
 }SqList;
 
 /**
@@ -76,6 +76,21 @@ int ListDelete_Sq(SqList* L,int i,ElemType *e)
         *(p-1)=*p;
     --L->length;             //表长减1
     return 1;
+}
+
+/*
+*已知顺序表La和Lb的元素按值非递减排列
+*归并La和Lb得到新的顺序线性表Lc，Lc的元素也按值非递减排列
+*/
+void MergeList_Sq(SqList La,SqList Lb,SqList *Lc)
+{
+    ElemType *pa=La.elem;
+    ElemType *pb=Lb.elem;
+    Lc->listsize=Lc->length=La.length+Lb.length;
+    ElemType *pc=Lc->elem=(ElemType* )malloc(Lc->listsize*sizeof(ElemType));
+    if(!Lc->elem)
+        return 0;   //存储分配失败
+    
 }
 
 int main()
